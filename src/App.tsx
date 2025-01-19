@@ -1,4 +1,5 @@
 import { Grid, GridItem, Show, useBreakpoint } from "@chakra-ui/react";
+import NavBar from "./components/NavBar/NavBar";
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
         <GridItem
           area="nav"
           // This GridItem is assigned to the 'nav' area of the grid
-          bg="coral"
         >
-          Nav {/*  // Content of the nav area */}
+
+        <NavBar/> {/*  // Content of the nav area */}
+
         </GridItem>
 
          
