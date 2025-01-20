@@ -1,5 +1,6 @@
 import { Grid, GridItem, Show, useBreakpoint } from "@chakra-ui/react";
 import NavBar from "./components/NavBar/NavBar";
+import GameGrid from "./components/GameGrid";
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
@@ -38,10 +39,9 @@ function App() {
         <GridItem
           area="main"
           // This GridItem is assigned to the 'main' area of the grid
-          bg="dodgerblue"
-          // Background color is set to dodger blue
+       
         >
-          Main {/*  // Content of the main area */}
+          <GameGrid/> {/*  // Content of the main area */}
         </GridItem>
       </Grid>
     </>
