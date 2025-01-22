@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
-interface Game {
+export interface Game {
   id: number;
   name: string;
+  background_image: string;
 }
 
 interface FetchGamesProps {
@@ -18,7 +19,7 @@ export const useGames = () => {
     const controller = new AbortController();
     const signal = controller.signal;
     apiClient
-      .get<FetchGamesProps>("/xgames", { signal })
+      .get<FetchGamesProps>("/games", { signal })
       .then((res) => {
         console.log("API Response:", res.data); // Log the response data
         if (res.data && res.data.results) {
