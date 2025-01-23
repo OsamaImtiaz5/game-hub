@@ -21,9 +21,12 @@ interface FetchGamesProps {
 export const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
+    setLoading(true);
+        
     apiClient
       .get<FetchGamesProps>("/games", { signal })
       .then((res) => {
@@ -33,16 +36,20 @@ export const useGames = () => {
         } else {
           console.warn("No data in response");
         }
+        setLoading(false);
+
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
 
         console.error("API Error:", err); // Log the error
         setError(err.message);
-      });
+        setLoading(false);
+
+      })
     return () => {
       controller.abort();
     };
   }, []);
-  return { games, error };
+  return { games, error , loading };
 };
