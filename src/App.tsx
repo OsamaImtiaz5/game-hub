@@ -1,7 +1,7 @@
-import { Grid, GridItem, Show, useBreakpoint } from "@chakra-ui/react";
-import NavBar from "./components/NavBar/NavBar";
+import { Grid, GridItem } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import GenersList from "./components/GenersList";
+import NavBar from "./components/NavBar/NavBar";
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
@@ -14,6 +14,11 @@ function App() {
           // For small screens (base), arrange nav and main in a single column
           lg: `'nav nav' 'aside main'`,
           // For large screens (lg and above), arrange nav across two columns, with aside and main in the second row
+        }}
+        templateColumns={{
+          base: "1fr",
+          lg: "200px 1fr",
+          // For large screens (lg and above), set the first column to 200px and the second column to 1fr (remaining space)
         }}
       >
         <GridItem
@@ -29,6 +34,7 @@ function App() {
           hideBelow="lg"
           // Chakra provides the hideFrom and hideBelow utilities to hide elements at specific breakpoints.
           // bg="gold"
+          px={5}
         >
           {/*  // Content of the aside area, only shown on large screens and */}
           <GenersList/>

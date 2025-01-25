@@ -13,13 +13,14 @@ const GameGrid = () => {
       {error && <Text>{error}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-        gap="60px"
+        columnGap={"10px"}
+        rowGap={"10px"}
         padding={"10px"}
       >
         {loading
           ? sekeletion.map((item) => (
-              <GameCardContainer>
-                <GameCardSkeleton key={item} />
+              <GameCardContainer key={item}>
+                <GameCardSkeleton />
               </GameCardContainer>
             ))
           : null}
