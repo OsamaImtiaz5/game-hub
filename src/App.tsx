@@ -2,9 +2,12 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import GenersList from "./components/GenersList";
 import NavBar from "./components/NavBar/NavBar";
+import { useState } from "react";
+import { Genre } from "./components/hooks/useGeners";
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
+  const[selectedGenre , setSelectedGenre]=useState<Genre | null>(null)
   return (
     <>
       <Grid
@@ -37,14 +40,15 @@ function App() {
           px={5}
         >
           {/*  // Content of the aside area, only shown on large screens and */}
-          <GenersList/>
+          <GenersList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
 
         <GridItem
           area="main"
           // This GridItem is assigned to the 'main' area of the grid
         >
-          <GameGrid /> {/*  // Content of the main area */}
+          <GameGrid selectedGenre={selectedGenre} />{" "}
+          {/*  // Content of the main area */}
         </GridItem>
       </Grid>
     </>
