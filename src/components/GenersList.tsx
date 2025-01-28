@@ -3,8 +3,9 @@ import useGeners, { Genre } from "./hooks/useGeners";
 import getCroppedImageUrl from "./services/image-url";
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null
 }
-const GenersList = ({ onSelectedGenre }: Props) => {
+const GenersList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data, error, loading } = useGeners();
   if (loading) return <Spinner />;
   if (error) return null;
@@ -20,7 +21,7 @@ const GenersList = ({ onSelectedGenre }: Props) => {
                 boxSize="32px"
                 borderRadius={8}
               />
-              <Link fontSize="lg" onClick={() => onSelectedGenre(genre)}>
+              <Link fontSize="lg" fontWeight={genre.id===selectedGenre?.id ? 'bold':''} onClick={() => onSelectedGenre(genre)}>
                 {" "}
                 {genre.name}
               </Link>

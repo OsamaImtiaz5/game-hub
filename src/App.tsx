@@ -40,7 +40,10 @@ function App() {
           px={5}
         >
           {/*  // Content of the aside area, only shown on large screens and */}
-          <GenersList onSelectedGenre={(genre) => setSelectedGenre(genre)} />
+          <GenersList
+            selectedGenre={selectedGenre}
+            onSelectedGenre={(genre) => setSelectedGenre(genre)}
+          />
         </GridItem>
 
         <GridItem
