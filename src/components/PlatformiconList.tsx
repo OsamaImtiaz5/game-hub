@@ -1,30 +1,34 @@
-import React from 'react'
-import { Platforms } from './hooks/useGames';
-import { HStack, Icon } from '@chakra-ui/react';
-import {FaWindows,FaPlaystation, FaXbox,FaApple, FaLinux,FaAndroid} from 'react-icons/fa'
-import {MdPhoneIphone} from 'react-icons/md'
-import {SiNintendo} from 'react-icons/si'
-import {BsGlobe}from 'react-icons/bs' 
-import { IconType } from 'react-icons';
-
+import { HStack, Icon } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+import { BsGlobe } from "react-icons/bs";
+import {
+  FaAndroid,
+  FaApple,
+  FaLinux,
+  FaPlaystation,
+  FaWindows,
+  FaXbox,
+} from "react-icons/fa";
+import { MdPhoneIphone } from "react-icons/md";
+import { SiNintendo } from "react-icons/si";
+import { Platform } from "./hooks/usePlatforms";
 
 interface Props {
-  platforms: Platforms[];
+  platforms: Platform[];
 }
- 
-const PlatformiconList = ({platforms}:Props) => {
-     const IconMap:{ [key:string]:IconType } = {
-        pc: FaWindows,
-        xbox: FaXbox,
-        playstation: FaPlaystation,
-        nintendo: SiNintendo,
-        ios: MdPhoneIphone,
-        android: FaAndroid,
-        linux: FaLinux,
-        mac: FaApple,
-        web: BsGlobe,
 
-    }
+const PlatformiconList = ({ platforms }: Props) => {
+  const IconMap: { [key: string]: IconType } = {
+    pc: FaWindows,
+    xbox: FaXbox,
+    playstation: FaPlaystation,
+    nintendo: SiNintendo,
+    ios: MdPhoneIphone,
+    android: FaAndroid,
+    linux: FaLinux,
+    mac: FaApple,
+    web: BsGlobe,
+  };
   return (
     <HStack marginY={"10px"}>
       {platforms.map((platform) => (
@@ -34,6 +38,6 @@ const PlatformiconList = ({platforms}:Props) => {
       ))}
     </HStack>
   );
-}
+};
 
-export default PlatformiconList
+export default PlatformiconList;

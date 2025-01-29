@@ -1,10 +1,11 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, HStack } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import GenersList from "./components/GenersList";
 import NavBar from "./components/NavBar/NavBar";
 import { useState } from "react";
 import { Genre } from "./components/hooks/useGeners";
 import PlatformSelector from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
 import { Platform } from "./components/hooks/usePlatforms";
 
 export interface GameQuery {
@@ -62,15 +63,16 @@ function App() {
           area="main"
           // This GridItem is assigned to the 'main' area of the grid
         >
-          <PlatformSelector
-            onSelectedPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
-            selectedPlatform={gameQuery.platform}
-          />
-          <GameGrid
-            gameQuery={gameQuery}
-          />{" "}
+          <HStack paddingLeft={2} spaceX={4} >
+            <PlatformSelector
+              onSelectedPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+              selectedPlatform={gameQuery.platform}
+            />
+            <SortSelector/>
+          </HStack>
+          <GameGrid gameQuery={gameQuery} />{" "}
           {/*  // Content of the main area */}
         </GridItem>
       </Grid>
