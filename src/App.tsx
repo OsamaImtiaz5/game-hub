@@ -11,6 +11,7 @@ import { Platform } from "./components/hooks/usePlatforms";
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
+  sortOrder: string;
 }
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
@@ -63,14 +64,19 @@ function App() {
           area="main"
           // This GridItem is assigned to the 'main' area of the grid
         >
-          <HStack paddingLeft={2} spaceX={4} >
+          <HStack paddingLeft={2} spaceX={4}>
             <PlatformSelector
               onSelectedPlatform={(platform) =>
                 setGameQuery({ ...gameQuery, platform })
               }
               selectedPlatform={gameQuery.platform}
             />
-            <SortSelector/>
+            <SortSelector
+              selectedSortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            />
           </HStack>
           <GameGrid gameQuery={gameQuery} />{" "}
           {/*  // Content of the main area */}

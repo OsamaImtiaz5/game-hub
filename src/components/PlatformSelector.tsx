@@ -20,9 +20,11 @@ const PlatformSelector = ({ onSelectedPlatform, selectedPlatform }: Props) => {
       <MenuRoot>
         <MenuTrigger asChild>
           <Button bgColor={"gray.700"} color={"white"} focusRing={"none"}>
-            {selectedPlatform?.name || "Platforms"} <BiChevronDown />
+            <span>{selectedPlatform?.name || "Platforms"}</span>{" "}
+            <BiChevronDown />
           </Button>
         </MenuTrigger>
+
         <MenuContent>
           {data.map((platform) => (
             <MenuItem
