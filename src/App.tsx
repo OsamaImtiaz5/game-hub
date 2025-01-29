@@ -5,10 +5,15 @@ import NavBar from "./components/NavBar/NavBar";
 import { useState } from "react";
 import { Genre } from "./components/hooks/useGeners";
 import PlatformSelector from "./components/PlatformSelector";
+import { Platform } from "./components/hooks/usePlatforms";
+
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
-  const[selectedGenre , setSelectedGenre]=useState<Genre | null>(null)
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
   return (
     <>
       <Grid
@@ -51,8 +56,14 @@ function App() {
           area="main"
           // This GridItem is assigned to the 'main' area of the grid
         >
-          <PlatformSelector/>
-          <GameGrid selectedGenre={selectedGenre} />{" "}
+          <PlatformSelector
+            onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+            selectedPlatform={selectedPlatform}
+          />
+          <GameGrid
+            selectedGenre={selectedGenre}
+            selectedPlatform={selectedPlatform}
+          />{" "}
           {/*  // Content of the main area */}
         </GridItem>
       </Grid>

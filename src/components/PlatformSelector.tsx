@@ -4,23 +4,32 @@ import {
   MenuRoot,
   MenuTrigger,
 } from "@/components/ui/menu";
-import { Button, Link } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 import { BiChevronDown } from "react-icons/bi";
-import usePlatforms from "./hooks/usePlatdorms";
-const PlatformSelector = () => {
+import usePlatforms, { Platform } from "./hooks/usePlatforms";
+interface Props {
+  onSelectedPlatform: (platform: Platform) => void;
+  selectedPlatform: Platform | null
+}
+
+const PlatformSelector = ({ onSelectedPlatform, selectedPlatform }: Props) => {
   const { data, error } = usePlatforms();
   if (error) return null;
   return (
     <div>
-      <MenuRoot >
+      <MenuRoot>
         <MenuTrigger asChild>
           <Button bgColor={"gray.700"} color={"white"} focusRing={"none"}>
-            Platforms <BiChevronDown />
+            {selectedPlatform?.name || "Platforms"} <BiChevronDown />
           </Button>
         </MenuTrigger>
         <MenuContent>
           {data.map((platform) => (
-            <MenuItem value={platform.name} key={platform.id}>
+            <MenuItem
+              value={platform.name}
+              key={platform.id}
+              onClick={() => onSelectedPlatform(platform)}
+            >
               {platform.name}
             </MenuItem>
           ))}
