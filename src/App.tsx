@@ -7,13 +7,19 @@ import { Genre } from "./components/hooks/useGeners";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./components/hooks/usePlatforms";
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+}
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null
-  );
+  // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+  //   null
+  // ); here we do refactoring as we have to make states vairable again and again for each query
+
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
     <>
       <Grid
@@ -47,8 +53,8 @@ function App() {
         >
           {/*  // Content of the aside area, only shown on large screens and */}
           <GenersList
-            selectedGenre={selectedGenre}
-            onSelectedGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={gameQuery.genre}
+            onSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
           />
         </GridItem>
 
@@ -57,12 +63,13 @@ function App() {
           // This GridItem is assigned to the 'main' area of the grid
         >
           <PlatformSelector
-            onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
-            selectedPlatform={selectedPlatform}
+            onSelectedPlatform={(platform) =>
+              setGameQuery({ ...gameQuery, platform })
+            }
+            selectedPlatform={gameQuery.platform}
           />
           <GameGrid
-            selectedGenre={selectedGenre}
-            selectedPlatform={selectedPlatform}
+            gameQuery={gameQuery}
           />{" "}
           {/*  // Content of the main area */}
         </GridItem>
