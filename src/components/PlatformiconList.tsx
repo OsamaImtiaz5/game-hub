@@ -17,7 +17,8 @@ interface Props {
   platforms: Platform[];
 }
 
-const PlatformiconList = ({ platforms }: Props) => {
+const PlatformIconList = ({ platforms }: Props) => {
+  // Define icon mapping for known platforms
   const IconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     xbox: FaXbox,
@@ -28,16 +29,23 @@ const PlatformiconList = ({ platforms }: Props) => {
     linux: FaLinux,
     mac: FaApple,
     web: BsGlobe,
+    // atari: ,commodore - amiga: (Add if needed)
   };
-  return (
-    <HStack marginY={"10px"}>
-      {platforms.map((platform) => (
-        <Icon as={IconMap[platform.slug]} color="gray.500" key={platform.id} />
 
-        // <Text key={platform.id}>{platform.name}</Text>
-      ))}
+  return (
+    <HStack marginY="10px">
+      {platforms
+        .filter((platform) => IconMap[platform?.slug]) // Skip unknown platforms
+        .map((platform) => (
+          <Icon
+            as={IconMap[platform.slug]}
+            color="gray.500"
+            key={platform.slug}
+            boxSize="20px"
+          />
+        ))}
     </HStack>
   );
 };
 
-export default PlatformiconList;
+export default PlatformIconList;
