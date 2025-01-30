@@ -12,6 +12,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 // Importing Grid, GridItem, and Show components from Chakra UI to create the layout and control visibility based on screen size.
 
@@ -42,7 +43,12 @@ function App() {
           area="nav"
           // This GridItem is assigned to the 'nav' area of the grid
         >
-          <NavBar /> {/*  // Content of the nav area */}
+          <NavBar
+            onSearch={(searchText) =>
+              setGameQuery({ ...gameQuery, searchText })
+            }
+          />{" "}
+          {/*  // Content of the nav area */}
         </GridItem>
 
         <GridItem
