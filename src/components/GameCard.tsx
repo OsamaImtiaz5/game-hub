@@ -18,7 +18,7 @@ const GameCard = ({ game }: GameCardProps) => {
         <Card.Title fontSize={"2xl"}>
           {game.name} <Emojis rating={game.rating_top} />{" "}
         </Card.Title>
-        <HStack justifyContent={"space-between"} marginY={"10px"}>
+        <HStack justifyContent={"space-between"} marginY={"10px"} flexWrap={"wrap"}>
           <PlatformiconList
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
